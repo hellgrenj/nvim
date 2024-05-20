@@ -8,7 +8,6 @@ if vim.fn.isdirectory(simpledash_dir) ~= 0 then
         end
     }
 else
-    -- Return nil if the directory does not exist, thus not loading the plugin
-    return nil
+    return {}
 end
 
