@@ -30,5 +30,7 @@ return {
     vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#1e1f21", fg = "#c4a7e7" })
     vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#2e2f31" })
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#565758" })
+
+    vim.api.nvim_set_hl(0, "ZenBg", { bg = "none" })
     end
 }

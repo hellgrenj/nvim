@@ -68,5 +68,6 @@ return {
         })
         -- set keybindin toggle ZenMode with leader + z + n
         vim.api.nvim_set_keymap("n", "<leader>zn", ":ZenMode<CR>", { noremap = true, silent = true })
+
     end
 }
