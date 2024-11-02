@@ -2,15 +2,12 @@ return {
     'folke/zen-mode.nvim',
     config = function()
         -- toggle function that stays on current buffer
-        local function toggleZenMode()
+        local function toggleZenMode() -- because in on_close it runs too early... 
             local zen_mode_active = require("zen-mode.view").is_open()
-
             if zen_mode_active then
-                local current_buf = vim.api.nvim_get_current_buf()
-                require("zen-mode").toggle()
-                vim.defer_fn(function()
-                    vim.api.nvim_set_current_buf(current_buf)
-                end, 10)
+                local current_zen_buf = vim.api.nvim_get_current_buf()
+                require("zen-mode").toggle() -- first toggle off
+                vim.api.nvim_set_current_buf(current_zen_buf) -- then set the last visited zen buffer as current
             else
                 require("zen-mode").toggle()
             end
