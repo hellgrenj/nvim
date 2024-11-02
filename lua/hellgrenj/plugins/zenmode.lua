@@ -1,7 +1,7 @@
 return {
     'folke/zen-mode.nvim',
     config = function()
-        -- Define the toggle function within config
+        -- toggle function that stays on current buffer
         local function toggleZenMode()
             local zen_mode_active = require("zen-mode.view").is_open()
 
@@ -40,7 +40,6 @@ return {
             },
         })
 
-        -- Map the local toggle function directly
         vim.api.nvim_set_keymap("n", "<leader>zn", "", {
             noremap = true,
             silent = true,
