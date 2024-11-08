@@ -5,7 +5,7 @@ if vim.fn.isdirectory(popclock_dir) ~= 0 then
         dir = popclock_dir,
         config = function()
             -- require("popclock").setup({ key_binding = "<leader>kl", position = "center", bgcolor="#FFFFFF", fgcolor="#000000" })
-            require("popclock").setup({key_binding = "<leader>kl", fgcolor="#b5befe"})
+            require("popclock").setup({key_binding = "<leader>kl", fgcolor="#b5befe", position="top"})
         end
     }
 else
