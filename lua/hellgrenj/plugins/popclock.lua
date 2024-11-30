@@ -1,13 +1,12 @@
-local popclock_dir = vim.fn.expand("~/popclock.nvim")
-if vim.fn.isdirectory(popclock_dir) ~= 0 then
-    -- Return the plugin configuration if the directory exists
-    return {
-        dir = popclock_dir,
-        config = function()
-            -- require("popclock").setup({ key_binding = "<leader>kl", position = "center", bgcolor="#FFFFFF", fgcolor="#000000" })
-            require("popclock").setup({key_binding = "<leader>kl", fgcolor="#b5befe", position="top"})
-        end
-    }
-else
-    return {}
-end
+return {
+  "hellgrenj/popclock.nvim",
+  config = function()
+    require("popclock").setup({
+      key_binding = "<leader>kl", -- Default: <leader>kl
+      position = "top",       -- Default: 'center'
+      fgcolor = "#b5befe",       -- Default: '#b5befe'
+      bgcolor = nil,       -- Default: nil (transparent)
+    })
+  end,
+}
+

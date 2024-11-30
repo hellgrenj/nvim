@@ -4,7 +4,7 @@ return {
    config = function()
         require("gen").setup({
             -- The default model to use.
-            model = "llama3.1",
+            model = "qwen2.5-coder:14b",
             -- The host running the Ollama service.
             host = "localhost",
             -- The port on which the Ollama service is listening.
