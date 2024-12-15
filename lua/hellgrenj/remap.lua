@@ -8,5 +8,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
 
 -- quickfix up and down
-vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<leader>cj", "<cmd>cnext<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>ck", "<cmd>cprev<CR>", { noremap = true })
+
+
