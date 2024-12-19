@@ -1,4 +1,4 @@
-local simpledash_dir = vim.fn.expand("~/simpledash_cli.nvim")
+local simpledash_dir = vim.fn.expand("~/local-nvim-plugins/simpledash_cli.nvim")
 if vim.fn.isdirectory(simpledash_dir) ~= 0 then
     -- Return the plugin configuration if the directory exists
     return {
