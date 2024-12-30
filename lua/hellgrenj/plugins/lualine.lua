@@ -45,8 +45,8 @@ return {
                 lualine_a = {
                     { 'mode', separator = { left = '' }, right_padding = 2 },
                 },
-                lualine_b = { { 'filename', path = 1 }, 'branch', copilot_status },
-                lualine_c = { 'fileformat' },
+                lualine_b = { { 'filename', path = 1 }, 'branch', copilot_status, 'fileformat' },
+                lualine_c = { },
                 lualine_x = {},
                 lualine_y = { 'filetype', 'progress' },
                 lualine_z = {
