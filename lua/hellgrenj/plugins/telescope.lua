@@ -13,5 +13,20 @@ return {
         vim.keymap.set('n', '<leader>lg', function()
             builtin.live_grep()
         end)
+        -- Keybinding for function symbols
+        vim.api.nvim_set_keymap(
+            'n',
+            '<leader>lf',
+            "<cmd>Telescope lsp_document_symbols symbols=function<CR>",
+            { noremap = true, silent = true }
+        )
+
+        -- Keybinding for method symbols
+        vim.api.nvim_set_keymap(
+            'n',
+            '<leader>lm',
+            "<cmd>Telescope lsp_document_symbols symbols=method<CR>",
+            { noremap = true, silent = true }
+        )
     end
 }
