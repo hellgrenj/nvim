@@ -67,9 +67,13 @@ return {
         }),
       })
 
-    require("mason").setup()
-
-      require('mason-lspconfig').setup({
+        require("mason").setup({
+          registries = {
+            "github:mason-org/mason-registry",      -- the default core registry
+            "github:Crashdummyy/mason-registry",    -- adds roslyn & rzls
+          },
+        })
+          require('mason-lspconfig').setup({
         ensure_installed = {
           'ts_ls','rust_analyzer','gopls','pylsp','bashls','zls','biome','clangd'
           -- intentionally no 'omnisharp' / 'csharp_ls' (installed separatly below)
