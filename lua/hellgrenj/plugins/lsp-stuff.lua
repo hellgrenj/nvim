@@ -70,13 +70,15 @@ return {
         require("mason").setup({
           registries = {
             "github:mason-org/mason-registry",      -- the default core registry
-            "github:Crashdummyy/mason-registry",    -- adds roslyn & rzls
+            "github:Crashdummyy/mason-registry",    -- adds roslyn & rzlslsp
           },
         })
           require('mason-lspconfig').setup({
         ensure_installed = {
-          'ts_ls','rust_analyzer','gopls','pylsp','bashls','zls','biome','clangd'
+          'ts_ls','rust_analyzer','gopls','pylsp','bashls','zls','biome','clangd', 'html'
           -- intentionally no 'omnisharp' / 'csharp_ls' (installed separatly below)
+          -- TODO: manually install MasonInstall roslyn 
+          -- netcoredbg is not an LSP but a DAP adapter cant be added above but installed via :MasonInstall netcoredbg (TODO: could be installed via mason-tool-installer tho i think...)
         },
         handlers = {
           lsp_zero.default_setup,
@@ -101,9 +103,31 @@ return {
         }
       })
 
-    -- new dotnet lsp
-    require("roslyn").setup()
 
+    -- rzls integration with roslyn.nvim
+    local mason_registry = require("mason-registry")
+
+    local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
+    local cmd = {
+        "roslyn",
+        "--stdio",
+        "--logLevel=Information",
+        "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+        "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
+        "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+        "--extension",
+        vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
+    }
+
+    -- new dotnet lsp
+    -- require("roslyn").setup()
+    require("roslyn").setup({
+        cmd = cmd,
+        config = {
+            -- the rest of your Roslyn configuration
+            handlers = require("rzls.roslyn_handlers"),
+        },
+    })
     end
   },
 
@@ -115,5 +139,6 @@ return {
 
     -- importing roslyn.nvim for C# support
   { 'seblyng/roslyn.nvim', opts = {} },
+  { 'tris203/rzls.nvim', opts = {} },
 }
 
