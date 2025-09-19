@@ -84,10 +84,10 @@ return {
           lsp_zero.default_setup,
           lua_ls = function()
             local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
+            require('lspconfig').lua_ls.setup(vim.lsp.config(lua_opts))
           end,
           pylsp = function()
-            require('lspconfig').pylsp.setup({
+            require('lspconfig').pylsp.setup(vim.lsp.config({
               settings = {
                 pylsp = {
                   plugins = {
@@ -98,37 +98,33 @@ return {
                   },
                 },
               },
-            })
+            }))
           end,
         }
       })
 
 
     -- rzls integration with roslyn.nvim
-    local mason_registry = require("mason-registry")
+        local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
+        local cmd = {
+          "roslyn",
+          "--stdio",
+          "--logLevel=Information",
+          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+          "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
+          "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+          "--extension",
+          vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
+        }
 
-    local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
-    local cmd = {
-        "roslyn",
-        "--stdio",
-        "--logLevel=Information",
-        "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-        "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
-        "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
-        "--extension",
-        vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
-    }
-
-    -- new dotnet lsp
-    -- require("roslyn").setup()
-    require("roslyn").setup({
-        cmd = cmd,
-        config = {
-            -- the rest of your Roslyn configuration
-            handlers = require("rzls.roslyn_handlers"),
-        },
-    })
-    end
+       require("roslyn").setup({
+          cmd = cmd,
+          handlers = require("rzls.roslyn_handlers"),
+          -- on_attach = ...,
+          -- capabilities = ...,
+          -- settings = { ... },
+        })
+     end
   },
 
   -- extras
