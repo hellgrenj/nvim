@@ -104,27 +104,28 @@ return {
       })
 
 
-    -- rzls integration with roslyn.nvim
-        local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
-        local cmd = {
-          "roslyn",
-          "--stdio",
-          "--logLevel=Information",
-          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-          "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
-          "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
-          "--extension",
-          vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
-        }
-
-       require("roslyn").setup({
-          cmd = cmd,
-          handlers = require("rzls.roslyn_handlers"),
-          -- on_attach = ...,
-          -- capabilities = ...,
-          -- settings = { ... },
-        })
-     end
+    -- -- rzls integration with roslyn.nvim
+    --     local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
+    --     local cmd = {
+    --       "roslyn",
+    --       "--stdio",
+    --       "--logLevel=Information",
+    --       "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+    --       "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
+    --       "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+    --       "--extension",
+    --       vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
+    --     }
+    --
+    --    require("roslyn").setup({
+    --       cmd = cmd,
+    --       handlers = require("rzls.roslyn_handlers"),
+    --       -- on_attach = ...,
+    --       -- capabilities = ...,
+    --       -- settings = { ... },
+    --     })
+        require("roslyn").setup()
+      end
   },
 
   -- extras
@@ -135,6 +136,6 @@ return {
 
     -- importing roslyn.nvim for C# support
   { 'seblyng/roslyn.nvim', opts = {} },
-  { 'tris203/rzls.nvim', opts = {} },
+  -- { 'tris203/rzls.nvim', opts = {} },
 }
 
