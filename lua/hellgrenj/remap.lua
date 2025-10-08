@@ -11,4 +11,3 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
 vim.keymap.set("n", "<leader>cj", "<cmd>cnext<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>ck", "<cmd>cprev<CR>", { noremap = true })
 
-
