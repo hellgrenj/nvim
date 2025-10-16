@@ -2,7 +2,8 @@ return {
     'rose-pine/neovim',
     -- 'folke/tokyonight.nvim',
     name = 'rose-pine',
-
+    lazy = false,
+    priority = 1000,                -- ← load first
     config = function()
     -- set colorscheme
     vim.cmd.colorscheme('rose-pine')
