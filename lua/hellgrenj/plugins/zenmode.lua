@@ -2,11 +2,11 @@ return {
     'folke/zen-mode.nvim',
     config = function()
         -- toggle function that stays on current buffer
-        local function toggleZenMode() -- because in on_close it runs too early... 
+        local function toggleZenMode() -- because in on_close it runs too early...
             local zen_mode_active = require("zen-mode.view").is_open()
             if zen_mode_active then
                 local current_zen_buf = vim.api.nvim_get_current_buf()
-                require("zen-mode").toggle() -- first toggle off
+                require("zen-mode").toggle()                  -- first toggle off
                 vim.api.nvim_set_current_buf(current_zen_buf) -- then set the last visited zen buffer as current
             else
                 require("zen-mode").toggle()
@@ -37,11 +37,28 @@ return {
             },
         })
 
+        local tmux_top_menu_visible = false
+        local function toggle_tmux_top_menu()
+            tmux_top_menu_visible = not tmux_top_menu_visible
+            if tmux_top_menu_visible then
+                vim.fn.system({ "tmux", "set", "status", "on" })
+            else
+                vim.fn.system({ "tmux", "set", "status", "off" })
+            end
+        end
+
+        -- toggle zen mode
         vim.api.nvim_set_keymap("n", "<leader>zn", "", {
             noremap = true,
             silent = true,
             callback = toggleZenMode
         })
-    end
-}
 
+        -- toggle tmux top menu visibilty while IN zen mode
+        vim.keymap.set("n", "<leader>zt", toggle_tmux_top_menu, {
+            desc = "Toggle tmux top menu",
+            silent = true,
+        })
+    end
+
+}
