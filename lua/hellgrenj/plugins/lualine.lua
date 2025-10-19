@@ -11,6 +11,7 @@ return {
             red    = '#ff5189',
             violet = '#d183e8',
             grey   = '#303030',
+            none = 'none',
         }
 
         local bubbles_theme = {

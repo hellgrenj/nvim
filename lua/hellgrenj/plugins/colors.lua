@@ -3,12 +3,15 @@ return {
     -- 'folke/tokyonight.nvim',
     name = 'rose-pine',
     lazy = false,
-    priority = 1000,                -- ← load first
+    priority = 1000,
     config = function()
     -- set colorscheme
     vim.cmd.colorscheme('rose-pine')
-
+        
     -- my custom highlights
+    vim.api.nvim_set_hl(0, "StatusLine",   { bg = "none" })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+ 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" }) -- <- black left padding
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
