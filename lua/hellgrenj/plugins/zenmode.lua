@@ -30,7 +30,7 @@ return {
                 },
                 twilight = { enabled = false },
                 gitsigns = { enabled = true },
-                tmux = { enabled = true },
+                tmux = { enabled = false },
                 kitty = { enabled = false, font = "+4" },
                 alacritty = { enabled = false, font = "14" },
                 wezterm = { enabled = false, font = "+4" },
