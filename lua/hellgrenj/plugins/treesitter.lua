@@ -16,6 +16,7 @@ return {
             "go",
             "markdown",
             "markdown_inline",
+            "yaml",
         })
 
         vim.api.nvim_create_autocmd("FileType", {

@@ -75,7 +75,7 @@ return {
         })
           require('mason-lspconfig').setup({
         ensure_installed = {
-          'ts_ls','rust_analyzer','gopls','pylsp','bashls','zls','biome','clangd', 'html'
+          'ts_ls','rust_analyzer','gopls','pylsp','bashls','zls','biome','clangd', 'html', 'yamlls'
           -- intentionally no 'omnisharp' / 'csharp_ls' (installed separatly below)
           -- TODO: manually install MasonInstall roslyn 
           -- netcoredbg is not an LSP but a DAP adapter cant be added above but installed via :MasonInstall netcoredbg (TODO: could be installed via mason-tool-installer tho i think...)
